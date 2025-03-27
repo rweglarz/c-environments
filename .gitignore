@@ -1,0 +1,11 @@
+.terraform*
+terraform.tfstate*
+settings.json
+cloudngfwaws_creds.json
+scm_creds*
+mgmt-ips.auto.tfvars
+lambda_payload.zip
+panorama_creds.json
+terraform.tfvars
+**/p1
+
