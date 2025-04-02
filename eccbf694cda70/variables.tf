@@ -23,8 +23,8 @@ variable "gcp_cidr" {
   default = "172.16.200.0/22"
 }
 
-variable "scm_creds" {
-  default = {}
+variable "scm_auth_file" {
+  default = null
 }
 
 variable "gcp_asn" {

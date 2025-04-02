@@ -5,10 +5,8 @@ provider "google" {
 }
 
 provider "scm" {
-  host          = "api.strata.paloaltonetworks.com"
-  client_id     = var.scm_creds.client_id
-  client_secret = var.scm_creds.client_secret
-  scope         = "tsg_id:${var.scm_creds.tsg_id}"
+  host       = "api.strata.paloaltonetworks.com"
+  auth_file  = var.scm_auth_file
 }
 
 terraform {
