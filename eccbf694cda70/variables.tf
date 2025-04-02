@@ -65,3 +65,7 @@ variable "gcp_sc_peering_cidr" {
     "169.254.250.252/30",
   ]
 }
+variable "mgmt_ips" {
+  default = []
+}
+
