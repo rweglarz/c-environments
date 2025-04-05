@@ -1,20 +1,32 @@
 variable "name" {
-  default = "prisma-gcp"
-}
-
-variable "gcp_region" {
-  type    = string
-  default = "europe-west1"
-}
-
-variable "gcp_zone" {
-  type    = string
-  default = "europe-west1-b"
+  default = "eccbf"
 }
 
 variable "gcp_project" {
   type = string
 }
+
+variable "gcp_dc1_region" {
+  type    = string
+  default = "europe-west4"  # netherlands
+}
+
+variable "gcp_dc1_zone" {
+  type    = string
+  default = "europe-west4-b"
+}
+
+variable "gcp_dc2_region" {
+  type    = string
+  default = "europe-central2"  # poland
+}
+
+variable "gcp_dc2_zone" {
+  type    = string
+  default = "europe-central2-b"
+}
+
+
 
 variable "azure_cidr" {
   default = "172.16.196.0/22"
@@ -44,16 +56,6 @@ variable "prisma_asn" {
   type    = string
   default = 65534
 }
-variable "sc_public_ip" {
-  description = "update with proper IP after commit of SC"
-  type        = string
-  default     = "192.0.2.1"
-}
-
-variable "sc_region" {
-  description = "service connection region"
-  type        = string
-}
 
 variable "psk" {
   type = string
@@ -69,3 +71,6 @@ variable "mgmt_ips" {
   default = []
 }
 
+variable "sc_public_ips" {
+  default = null
+}

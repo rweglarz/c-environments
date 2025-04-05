@@ -1,10 +1,11 @@
 resource "google_compute_firewall" "this-i" {
   for_each = merge(
     {
-      mgmt = google_compute_network.net1.id
+      workloads = google_compute_network.workloads.id
+      mgmt      = google_compute_network.mgmt.id
     },
   )
-  name      = "${local.env_prefix}-${each.key}-i"
+  name      = "${var.name}-${each.key}-i"
   network   = each.value
   direction = "INGRESS"
   source_ranges = concat(

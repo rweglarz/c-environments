@@ -1,7 +1,14 @@
 provider "google" {
-  region  = var.gcp_region
-  zone    = var.gcp_zone
+  region  = var.gcp_dc1_region
+  zone    = var.gcp_dc1_zone
   project = var.gcp_project
+  alias   = "dc1"
+}
+provider "google" {
+  region  = var.gcp_dc2_region
+  zone    = var.gcp_dc2_zone
+  project = var.gcp_project
+  alias   = "dc2"
 }
 
 provider "scm" {
