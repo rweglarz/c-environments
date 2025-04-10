@@ -1,8 +1,12 @@
-output "workload_ips" {
+output "gcp_dc1" {
   value = {
-    gcp_dc1_jumphost   = {
-      private = google_compute_instance.vm_gcp_dc1_jumphost.network_interface[0].network_ip
-      public  = google_compute_instance.vm_gcp_dc1_jumphost.network_interface[0].access_config[0].nat_ip
-    }
+    linux = module.gcp_dc1.vms_linux
   }
 }
+
+output "gcp_dc2" {
+  value = {
+    linux = module.gcp_dc2.vms_linux
+  }
+}
+

@@ -69,3 +69,12 @@ variable "psk" {
 variable "deploy_ngfw" {
   default = false
 }
+
+variable "vms_linux" {
+  default = {
+    jumphost = {
+      subnet   = "mgmt"
+      host_num = 5
+    }
+  }
+}

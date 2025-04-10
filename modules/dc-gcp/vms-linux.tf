@@ -4,10 +4,12 @@ data "google_compute_image" "ubuntu" {
 }
 
 
-resource "google_compute_instance" "vm_gcp_dc1_jumphost" {
-  name         = "${local.env_prefix}-gcp-dc1-jumphost"
+
+resource "google_compute_instance" "vm_linux" {
+  for_each = var.vms_linux
+
+  name         = "${var.name}-${each.key}"
   machine_type = "f1-micro"
-  provider     = google.dc1
 
   boot_disk {
     initialize_params {
@@ -16,11 +18,8 @@ resource "google_compute_instance" "vm_gcp_dc1_jumphost" {
   }
 
   network_interface {
-    subnetwork = module.gcp_dc1.subnets.mgmt.id
-    network_ip = cidrhost(module.gcp_dc1.subnets.mgmt.ip_cidr_range, 5)
-    access_config {
-      // Ephemeral public IP
-    }
+    subnetwork = google_compute_subnetwork.this[each.value.subnet].id
+    network_ip = try(cidrhost(google_compute_subnetwork.this[each.value.subnet].ip_cidr_range, each.value.hostnum), null)
   }
   lifecycle {
     ignore_changes = [

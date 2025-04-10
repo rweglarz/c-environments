@@ -8,11 +8,14 @@ module "gcp_dc1" {
   fw_asn  = 65512
   psk = var.psk
 
-  cidr        = "172.16.1.0/24"
+  cidr        = local.cidrs.dc1
+  mgmt_ips    = var.mgmt_ips
 
   sc_region        = "netherlands-central"
   sc_vpn_public_ip = try(var.sc_public_ips.dc1_vpn, null)
   sc_fw_public_ip  = try(var.sc_public_ips.dc1_fw, null)
+
+  vms_linux = var.dc1_vms.linux
 }
 
 module "gcp_dc2" {
@@ -25,7 +28,8 @@ module "gcp_dc2" {
   fw_asn  = 65522
   psk = var.psk
 
-  cidr        = "172.16.2.0/24"
+  cidr        = local.cidrs.dc2
+  mgmt_ips    = var.mgmt_ips
 
   sc_region        = "poland"
   sc_vpn_public_ip = try(var.sc_public_ips.dc2_vpn, null)

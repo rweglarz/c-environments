@@ -1,8 +1,9 @@
 resource "google_compute_firewall" "this-i" {
   for_each = merge(
     {
-      workloads = google_compute_network.workloads.id
-      mgmt      = google_compute_network.mgmt.id
+      mgmt        = google_compute_network.this["mgmt"].id
+      workloads-a = google_compute_network.this["workloads-a"].id
+      workloads-b = google_compute_network.this["workloads-b"].id
     },
   )
   name      = "${var.name}-${each.key}-i"
