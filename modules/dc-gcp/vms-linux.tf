@@ -4,6 +4,14 @@ data "google_compute_image" "ubuntu" {
 }
 
 
+module "linux_bs" {
+  source = "../linux-as-server"
+  for_each = var.vms_linux
+
+  params = try(each.value.params, {})
+  type   = try(each.value.type, null)
+}
+
 
 resource "google_compute_instance" "vm_linux" {
   for_each = var.vms_linux
@@ -15,6 +23,9 @@ resource "google_compute_instance" "vm_linux" {
     initialize_params {
       image = data.google_compute_image.ubuntu.self_link
     }
+  }
+  metadata = {
+    user-data = try(module.linux_bs[each.key].rendered, null)
   }
 
   network_interface {
