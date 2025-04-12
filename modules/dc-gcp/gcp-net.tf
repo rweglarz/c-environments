@@ -79,3 +79,35 @@ resource "google_compute_network_peering" "private_from" {
     google_compute_network_peering.private_to
   ]
 }
+
+
+
+resource "google_compute_network_peering" "mgmt_to" {
+  for_each = {
+    workloads-a = google_compute_network.this["workloads-a"].id
+    workloads-b = google_compute_network.this["workloads-b"].id
+  }
+  name                 = "${var.name}-mgmt-to-${each.key}"
+  network              = google_compute_network.this["mgmt"].id
+  peer_network         = each.value
+  export_custom_routes = true
+
+  depends_on = [
+    google_compute_network_peering.private_from
+  ]
+}
+
+resource "google_compute_network_peering" "mgmt_from" {
+  for_each = {
+    workloads-a = google_compute_network.this["workloads-a"].id
+    workloads-b = google_compute_network.this["workloads-b"].id
+  }
+  name                 = "${var.name}-mgmt-from-${each.key}"
+  network              = each.value
+  peer_network         = google_compute_network.this["mgmt"].id
+  import_custom_routes = true
+
+  depends_on = [
+    google_compute_network_peering.mgmt_to
+  ]
+}
