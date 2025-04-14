@@ -1,8 +1,8 @@
 data "cloudinit_config" "webserver" {
   count = try(var.type=="webserver") ? 1 : 0
 
-  gzip          = false
-  base64_encode = false
+  gzip          = var.gzip
+  base64_encode = var.base64_encode
 
   part {
     filename     = "init.cfg"
