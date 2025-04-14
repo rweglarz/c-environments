@@ -82,6 +82,28 @@ variable "sc_public_ips" {
   default = null
 }
 
+variable "dc1_vms" {
+  default = {
+    linux = {
+      jumphost = {
+        subnet  = "mgmt"
+        hostnum = 5
+      }
+    }
+  }
+}
+
+variable "dc2_vms" {
+  default = {
+    linux = {
+      jumphost = {
+        subnet  = "mgmt"
+        hostnum = 5
+      }
+    }
+  }
+}
+
 variable "azure_dc1_vms" {
   default = {
     linux = {
