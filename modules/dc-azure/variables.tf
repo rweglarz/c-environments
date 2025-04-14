@@ -19,6 +19,11 @@ variable "vms_linux" {
   }
 }
 
+variable "vms_windows" {
+  default = {
+  }
+}
+
 variable "vms_ztna" {
   default = {
   }
