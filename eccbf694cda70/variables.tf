@@ -27,13 +27,20 @@ variable "gcp_dc2_zone" {
 }
 
 
+variable "azure_dc1_region" {
+  type    = string
+  default = "West Europe"
+}
 
-variable "azure_cidr" {
-  default = "172.16.196.0/22"
+variable "azure_dc2_region" {
+  type    = string
+  default = "Poland Central"
 }
-variable "gcp_cidr" {
-  default = "172.16.200.0/22"
+
+variable "azure_subscription_id" {
+  type = string
 }
+
 
 variable "scm_auth_file" {
   default = null
@@ -73,4 +80,26 @@ variable "mgmt_ips" {
 
 variable "sc_public_ips" {
   default = null
+}
+
+variable "azure_dc1_vms" {
+  default = {
+    linux = {
+      jumphost = {
+        subnet  = "mgmt"
+        hostnum = 5
+      }
+    }
+  }
+}
+
+variable "azure_dc2_vms" {
+  default = {
+    linux = {
+      jumphost = {
+        subnet  = "mgmt"
+        hostnum = 5
+      }
+    }
+  }
 }

@@ -1,3 +1,9 @@
+provider "azurerm" {
+  features {
+  }
+  subscription_id = var.azure_subscription_id
+}
+
 provider "google" {
   region  = var.gcp_dc1_region
   zone    = var.gcp_dc1_zone
@@ -18,6 +24,9 @@ provider "scm" {
 
 terraform {
   required_providers {
+    azurerm = {
+      version = "~>4.18"
+    }
     google = {
       source  = "hashicorp/google"
       version = "~>5.38"
