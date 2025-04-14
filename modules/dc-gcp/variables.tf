@@ -72,9 +72,14 @@ variable "deploy_ngfw" {
 
 variable "vms_linux" {
   default = {
-    jumphost = {
-      subnet   = "mgmt"
-      host_num = 5
-    }
+    # jumphost = {
+    #   subnet   = "mgmt"
+    #   host_num = 5
+    # }
+  }
+}
+
+variable "vms_windows" {
+  default = {
   }
 }
