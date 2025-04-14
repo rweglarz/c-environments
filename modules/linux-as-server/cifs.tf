@@ -22,6 +22,7 @@ data "cloudinit_config" "cifs" {
       ]
       users = [
         "default",
+        "smb",
       ]
       packages = [
         "fping",
