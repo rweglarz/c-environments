@@ -22,4 +22,5 @@ module "vm_linux" {
   username            = each.value.auth.username
   password            = each.value.auth.password
   custom_data         = try(module.linux_bs[each.key].rendered, null)
+  associate_public_ip = try(each.value.associate_public_ip, false)
 }
