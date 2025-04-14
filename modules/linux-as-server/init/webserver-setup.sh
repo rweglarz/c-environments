@@ -15,8 +15,8 @@ Description=python mini web server
 After=network.target
 
 [Service]
-Environment="app=${hostname}"
-Environment="server_ip=$(ip route get 1.1.1.1 | grep -Po '(?<=src ).*(?=uid)')"
+Environment="hostname=${hostname}"
+Environment="server_ip=$(ip route get 1.1.1.1 | grep -Po '(?<=src ).*(?= uid)')"
 ExecStart=authbind --deep $APPHOME/.venv/bin/python3.12 $APPHOME/webserver.py 
 Restart=always
 User=app
