@@ -22,3 +22,13 @@ resource "azurerm_resource_group" "this" {
   name     = var.name
   location = var.region
 }
+
+
+module "basic" {
+  source = "github.com/rweglarz/c-azure//modules/basic"
+  name   = var.name
+
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+  mgmt_cidrs          = [for r in var.mgmt_ips : "${r.cidr}"]
+}

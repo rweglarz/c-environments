@@ -8,9 +8,9 @@ module "vnet_sec" {
 
   subnets = {
     mgmt = {
-      associate_nsg    = false
       address_prefixes = [local.cidrs.mgmt]
-      #   network_security_group_id = module.azure_basic.sg_id.mgmt
+      associate_nsg    = true
+      network_security_group_id = module.basic.sg_id.mgmt
     },
     public = {
       address_prefixes = [local.cidrs.public]
@@ -36,6 +36,8 @@ module "vnet_workloads_a" {
   subnets = {
     workloads-a = {
       address_prefixes = [local.cidrs.workloads-a]
+      associate_nsg    = true
+      network_security_group_id = module.basic.sg_id.mgmt
     },
   }
 }
@@ -52,6 +54,8 @@ module "vnet_workloads_b" {
   subnets = {
     workloads-b = {
       address_prefixes = [local.cidrs.workloads-b]
+      associate_nsg    = true
+      network_security_group_id = module.basic.sg_id.mgmt
     },
   }
 }
