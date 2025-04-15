@@ -4,7 +4,7 @@ resource "google_compute_external_vpn_gateway" "this" {
   redundancy_type = "SINGLE_IP_INTERNALLY_REDUNDANT"
   interface {
     id         = 0
-    ip_address = var.sc_public_ip
+    ip_address = var.pa_public_ip
   }
 }
 

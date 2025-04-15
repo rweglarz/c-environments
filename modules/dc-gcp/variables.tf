@@ -35,32 +35,46 @@ variable "bgp_peer_enable" {
   ]
 }
 
-variable "sc_vpn_peering_cidrs" {
+variable "deploy_sc" {
+  default = false
+}
+variable "deploy_rn" {
+  default = false
+}
+
+variable "pa_vpn_peering_cidrs" {
+  description = "service connection or remote network to ha-vpn bgp peering cidrs"
   default = [
     "169.254.250.244/30",
     "169.254.250.248/30",
   ]
 }
 
-variable "sc_fw_peering_cidr" {
+variable "pa_fw_peering_cidr" {
+  description = "service connection to fw bgp peering cidrs"
   default = "169.254.250.252/30"
 }
 
-variable "sc_vpn_public_ip" {
+variable "pa_vpn_public_ip" {
+  description = "service connection or remote network public ip, connection to ha-vpn"
   default  = "192.168.1.1"
   nullable = false
 }
 
-variable "sc_fw_public_ip" {
+variable "pa_fw_public_ip" {
+  description = "service connection or remote network public ip, connection to fw"
   default  = "192.168.1.2"
   nullable = false
 }
 
-variable "sc_region" {
-  description = "service connection region"
+variable "pa_region" {
+  description = "service connection or remote network region"
   type        = string
 }
 
+variable "spn_name" {
+  default = null
+}
 
 variable "psk" {
   type = string

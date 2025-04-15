@@ -1,5 +1,8 @@
 resource "scm_ike_gateway" "fw" {
+  count = var.deploy_sc ? 1 : 0
+
   name = "${var.name}-fw-ike"
+
   authentication = {
     pre_shared_key = {
       key = var.psk
@@ -26,12 +29,16 @@ resource "scm_ike_gateway" "fw" {
   folder = local.sc_folder
 }
 
+
 resource "scm_ipsec_tunnel" "fw" {
+  count = var.deploy_sc ? 1 : 0
+
   name = "${var.name}-fw-tunnel"
+
   auto_key = {
     ipsec_crypto_profile = "Suite-B-GCM-256"
     ike_gateways = [{
-      name = scm_ike_gateway.fw.name
+      name = scm_ike_gateway.fw[0].name
     }]
   }
   anti_replay = true
@@ -44,15 +51,18 @@ resource "scm_ipsec_tunnel" "fw" {
 
 
 resource "scm_service_connection" "fw" {
-  name         = "${var.name}-fw"
-  ipsec_tunnel = scm_ipsec_tunnel.fw.name
-  region       = var.sc_region
+  count = var.deploy_sc ? 1 : 0
+
+  name = "${var.name}-fw"
+
+  ipsec_tunnel = scm_ipsec_tunnel.fw[0].name
+  region       = var.pa_region
   protocol = {
     # bgp peering on primary tunnel
     bgp = {
       enable           = true
       peer_as          = var.gcp_asn
-      local_ip_address = cidrhost(var.sc_fw_peering_cidr, 2)
+      local_ip_address = cidrhost(var.pa_fw_peering_cidr, 2)
     }
   }
 }

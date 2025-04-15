@@ -32,11 +32,11 @@ variable "peering_cidrs" {
   ]
 }
 
-variable "sc_public_ip" {
+variable "pa_public_ip" {
   type = string
 }
 
-variable "sc_region" {
+variable "pa_region" {
   description = "service connection region"
   type        = string
 }
@@ -46,3 +46,27 @@ variable "psk" {
   type = string
 }
 
+
+variable "deploy_rn" {
+  default = false
+}
+
+variable "deploy_sc" {
+  default = false
+  validation {
+    condition     = var.deploy_rn || var.deploy_sc
+    error_message = "need to deploy either rn or sc"
+  }
+  validation {
+    condition     = !(var.deploy_rn && var.deploy_sc)
+    error_message = "only one of rn or sc can be deployed"
+  }
+}
+
+variable "spn_name" {
+  default = null
+}
+
+variable "license_type" {
+  default = "FWAAS-AGGREGATE"
+}
