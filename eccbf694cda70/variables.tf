@@ -125,3 +125,7 @@ variable "azure_dc2_vms" {
     }
   }
 }
+
+variable "key_vault_id" {
+  default = null
+}

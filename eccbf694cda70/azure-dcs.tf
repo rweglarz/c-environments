@@ -11,7 +11,7 @@ module "azure_dc1" {
 
   vms_linux   = var.azure_dc1_vms.linux
   vms_windows = var.azure_dc1_vms.windows
-  vms_ztna    = var.azure_dc1_vms.ztna
+  vms_ztna    = local.azure_dc1_vms_ztna
 }
 
 module "azure_dc2" {
@@ -26,5 +26,5 @@ module "azure_dc2" {
   ssh_public_key = azurerm_ssh_public_key.this.public_key
 
   vms_linux = var.azure_dc2_vms.linux
-  vms_ztna  = var.azure_dc2_vms.ztna
+  vms_ztna  = local.azure_dc2_vms_ztna
 }
