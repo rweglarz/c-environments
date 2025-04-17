@@ -4,8 +4,8 @@ module "gcp_dc1" {
   providers = { google = google.dc1 }
   name      = "${var.name}-dc1"
 
-  gcp_asn = 65510
-  fw_asn  = 65512
+  gcp_asn = var.asns.gcp_dc1_vpn
+  fw_asn  = var.asns.gcp_dc1_fw
   psk = var.psk
 
   cidr        = local.cidrs.dc1
@@ -26,8 +26,8 @@ module "gcp_dc2" {
   providers = { google = google.dc2 }
   name      = "${var.name}-dc2"
 
-  gcp_asn = 65520
-  fw_asn  = 65522
+  gcp_asn = var.asns.gcp_dc2_vpn
+  fw_asn  = var.asns.gcp_dc2_fw
   psk = var.psk
 
   cidr        = local.cidrs.dc2

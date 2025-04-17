@@ -46,10 +46,6 @@ variable "scm_auth_file" {
   default = null
 }
 
-variable "gcp_asn" {
-  type    = string
-  default = 64521
-}
 variable "gcp_peer_enable" {
   description = "disable bgp peer on google side"
   type = list(bool)
@@ -62,6 +58,16 @@ variable "gcp_peer_enable" {
 variable "prisma_asn" {
   type    = string
   default = 65534
+}
+
+variable "asns" {
+  default = {
+    prisma        = 65534
+    gcp_dc1_vpn   = 65010
+    gcp_dc1_fw    = 65012
+    gcp_dc2_vpn   = 65020
+    gcp_dc2_fw    = 65022
+  }
 }
 
 variable "psk" {
