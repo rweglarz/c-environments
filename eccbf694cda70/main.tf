@@ -16,6 +16,12 @@ provider "google" {
   project = var.gcp_project
   alias   = "dc2"
 }
+provider "google" {
+  region  = var.gcp_office1_region
+  zone    = var.gcp_office1_zone
+  project = var.gcp_project
+  alias   = "office1"
+}
 
 provider "scm" {
   host       = "api.strata.paloaltonetworks.com"

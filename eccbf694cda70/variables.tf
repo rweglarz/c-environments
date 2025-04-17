@@ -26,6 +26,16 @@ variable "gcp_dc2_zone" {
   default = "europe-central2-b"
 }
 
+variable "gcp_office1_region" {
+  type    = string
+  default = "europe-west4"  # netherlands
+}
+
+variable "gcp_office1_zone" {
+  type    = string
+  default = "europe-west4-b"
+}
+
 
 variable "azure_dc1_region" {
   type    = string
@@ -67,6 +77,7 @@ variable "asns" {
     gcp_dc1_fw    = 65012
     gcp_dc2_vpn   = 65020
     gcp_dc2_fw    = 65022
+    gcp_office1   = 65101
   }
 }
 
@@ -85,6 +96,10 @@ variable "mgmt_ips" {
 }
 
 variable "sc_public_ips" {
+  default = null
+}
+
+variable "rn_public_ips" {
   default = null
 }
 
@@ -122,6 +137,17 @@ variable "azure_dc1_vms" {
 }
 
 variable "azure_dc2_vms" {
+  default = {
+    linux = {
+      jumphost = {
+        subnet  = "mgmt"
+        hostnum = 5
+      }
+    }
+  }
+}
+
+variable "office1_vms" {
   default = {
     linux = {
       jumphost = {
