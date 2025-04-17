@@ -31,3 +31,42 @@ variable "vms_ztna" {
 
 variable "ssh_public_key" {
 }
+
+variable "deploy_sc" {
+  default = false
+}
+variable "deploy_rn" {
+  default = false
+}
+
+variable "prisma_asn" {
+  default = 65534
+}
+
+variable "azure_asn" {
+  default = 64520
+}
+
+variable "spn_name" {
+  default = null
+}
+
+variable "psk" {
+  type = string
+}
+
+variable "pa_vpn_peering_cidr" {
+  description = "service connection or remote network to vng bgp peering cidrs"
+  default = null
+}
+
+variable "pa_vpn_public_ip" {
+  description = "service connection or remote network public ip, connection to vng"
+  default = null
+}
+
+variable "pa_region" {
+  description = "service connection region"
+  type        = string
+}
+
