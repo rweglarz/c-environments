@@ -77,6 +77,8 @@ variable "asns" {
     gcp_dc1_fw    = 65012
     gcp_dc2_vpn   = 65020
     gcp_dc2_fw    = 65022
+    azure_dc1     = 65030
+    azure_dc2     = 65040
     gcp_office1   = 65101
   }
 }
