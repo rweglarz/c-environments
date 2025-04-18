@@ -37,12 +37,12 @@ variable "gcp_office1_zone" {
 }
 
 
-variable "azure_dc1_region" {
+variable "azure_dc3_region" {
   type    = string
   default = "West Europe"
 }
 
-variable "azure_dc2_region" {
+variable "azure_dc4_region" {
   type    = string
   default = "Poland Central"
 }
@@ -56,15 +56,6 @@ variable "scm_auth_file" {
   default = null
 }
 
-variable "gcp_peer_enable" {
-  description = "disable bgp peer on google side"
-  type = list(bool)
-  default = [ 
-    true,
-    true,
-  ]
-}
-
 variable "prisma_asn" {
   type    = string
   default = 65534
@@ -72,14 +63,14 @@ variable "prisma_asn" {
 
 variable "asns" {
   default = {
-    prisma        = 65534
-    gcp_dc1_vpn   = 65010
-    gcp_dc1_fw    = 65012
-    gcp_dc2_vpn   = 65020
-    gcp_dc2_fw    = 65022
-    azure_dc1     = 65030
-    azure_dc2     = 65040
-    gcp_office1   = 65101
+    prisma    = 65534
+    dc1_vpn   = 65010
+    dc1_fw    = 65012
+    dc2_vpn   = 65020
+    dc2_fw    = 65022
+    azure_dc3 = 65030
+    azure_dc4 = 65040
+    office1   = 65101
   }
 }
 
@@ -98,55 +89,27 @@ variable "mgmt_ips" {
 }
 
 variable "sc_public_ips" {
-  default = null
+  default = {}
 }
 
 variable "rn_public_ips" {
-  default = null
+  default = {}
 }
 
 variable "dc1_vms" {
-  default = {
-    linux = {
-      jumphost = {
-        subnet  = "mgmt"
-        hostnum = 5
-      }
-    }
-  }
+  default = {}
 }
 
 variable "dc2_vms" {
-  default = {
-    linux = {
-      jumphost = {
-        subnet  = "mgmt"
-        hostnum = 5
-      }
-    }
-  }
+  default = {}
 }
 
-variable "azure_dc1_vms" {
-  default = {
-    linux = {
-      jumphost = {
-        subnet  = "mgmt"
-        hostnum = 5
-      }
-    }
-  }
+variable "azure_dc3_vms" {
+  default = {}
 }
 
-variable "azure_dc2_vms" {
-  default = {
-    linux = {
-      jumphost = {
-        subnet  = "mgmt"
-        hostnum = 5
-      }
-    }
-  }
+variable "azure_dc4_vms" {
+  default = {}
 }
 
 variable "office1_vms" {

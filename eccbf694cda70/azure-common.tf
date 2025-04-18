@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "rg" {
   name     = var.name
-  location = var.azure_dc2_region
+  location = var.azure_dc3_region
 }
 
 
