@@ -78,13 +78,6 @@ variable "psk" {
   type = string
 }
 
-variable "gcp_sc_peering_cidr" {
-  default = [
-    "169.254.250.248/30",
-    "169.254.250.252/30",
-  ]
-}
-
 variable "auth" {
   type = object({
     username = string
