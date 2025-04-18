@@ -84,6 +84,14 @@ variable "gcp_sc_peering_cidr" {
     "169.254.250.252/30",
   ]
 }
+
+variable "auth" {
+  type = object({
+    username = string
+    password = string
+  })
+}
+
 variable "mgmt_ips" {
   default = []
 }

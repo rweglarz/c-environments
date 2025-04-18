@@ -16,9 +16,9 @@ module "azure_dc3" {
 
   ssh_public_key = azurerm_ssh_public_key.this.public_key
 
-  vms_linux   = var.azure_dc3_vms.linux
-  vms_windows = var.azure_dc3_vms.windows
-  vms_ztna    = local.azure_dc3_vms_ztna
+  vms_linux   = local.azure_dc3_vms.linux
+  vms_windows = local.azure_dc3_vms.windows
+  vms_ztna    = local.azure_dc3_vms.ztna
 }
 
 module "azure_dc4" {
@@ -39,6 +39,7 @@ module "azure_dc4" {
 
   ssh_public_key = azurerm_ssh_public_key.this.public_key
 
-  vms_linux = var.azure_dc4_vms.linux
-  vms_ztna  = local.azure_dc4_vms_ztna
+  vms_linux   = local.azure_dc4_vms.linux
+  vms_windows = local.azure_dc4_vms.windows
+  vms_ztna    = local.azure_dc4_vms.ztna
 }
