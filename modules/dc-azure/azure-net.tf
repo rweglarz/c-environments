@@ -69,7 +69,7 @@ module "vnet_peering_a" {
     resource_group_name     = azurerm_resource_group.this.name
     virtual_network_name    = module.vnet_workloads_a.vnet.name
     virtual_network_id      = module.vnet_workloads_a.vnet.id
-    use_remote_gateways     = true
+    use_remote_gateways     = local.deploy_vng ? true : false
   }
   on_remote = {
     resource_group_name    = azurerm_resource_group.this.name
@@ -86,7 +86,7 @@ module "vnet_peering_b" {
     resource_group_name     = azurerm_resource_group.this.name
     virtual_network_name    = module.vnet_workloads_b.vnet.name
     virtual_network_id      = module.vnet_workloads_b.vnet.id
-    use_remote_gateways     = true
+    use_remote_gateways     = local.deploy_vng ? true : false
   }
   on_remote = {
     resource_group_name    = azurerm_resource_group.this.name
