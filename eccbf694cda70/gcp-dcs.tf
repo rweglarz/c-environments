@@ -1,5 +1,5 @@
 module "gcp_dc1" {
-  source = "../modules/dc-gcp"
+  source = "github.com/rweglarz/c-environments//modules/dc-gcp"
 
   providers = { google = google.dc1 }
   name      = "${var.name}-dc1"
@@ -21,7 +21,7 @@ module "gcp_dc1" {
 }
 
 module "gcp_dc2" {
-  source = "../modules/dc-gcp"
+  source = "github.com/rweglarz/c-environments//modules/dc-gcp"
 
   providers = { google = google.dc2 }
   name      = "${var.name}-dc2"

@@ -1,5 +1,5 @@
 module "azure_dc3" {
-  source = "../modules/dc-azure"
+  source = "github.com/rweglarz/c-environments//modules/dc-azure"
 
   name      = "${var.name}-azure-dc3"
   region    = var.azure_dc3_region
@@ -22,7 +22,7 @@ module "azure_dc3" {
 }
 
 module "azure_dc4" {
-  source = "../modules/dc-azure"
+  source = "github.com/rweglarz/c-environments//modules/dc-azure"
 
   name      = "${var.name}-azure-dc4"
   region    = var.azure_dc4_region

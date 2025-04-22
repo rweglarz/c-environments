@@ -1,5 +1,5 @@
 module "gcp_office1" {
-  source = "../modules/dc-gcp"
+  source = "github.com/rweglarz/c-environments//modules/dc-gcp"
 
   providers = { google = google.office1 }
   name      = "${var.name}-office1"
