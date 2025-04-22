@@ -5,7 +5,7 @@ module "azure_dc3" {
   region    = var.azure_dc3_region
 
   azure_asn   = var.asns.azure_dc3
-  deploy_rn   = true
+  deploy_rn   = false
   pa_region   = "netherlands-central"
   spn_name    = "europe-west-mombin"
   psk         = var.psk
@@ -28,7 +28,7 @@ module "azure_dc4" {
   region    = var.azure_dc4_region
 
   azure_asn   = var.asns.azure_dc4
-  deploy_rn   = true
+  deploy_rn   = false
   pa_region   = "poland"
   spn_name    = "europe-central-warsaw-acerola"
   psk         = var.psk

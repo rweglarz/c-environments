@@ -11,7 +11,7 @@ module "gcp_dc1" {
   cidr        = local.cidrs.dc1
   mgmt_ips    = var.mgmt_ips
 
-  deploy_sc        = true
+  deploy_sc        = false
   pa_region        = "netherlands-central"
   pa_vpn_public_ip = try(var.sc_public_ips.dc1, null)
   pa_fw_public_ip  = try(var.sc_public_ips.dc1-fw, null)
@@ -33,7 +33,7 @@ module "gcp_dc2" {
   cidr        = local.cidrs.dc2
   mgmt_ips    = var.mgmt_ips
 
-  deploy_sc        = true
+  deploy_sc        = false
   pa_region        = "poland"
   pa_vpn_public_ip = try(var.sc_public_ips.dc2, null)
   pa_fw_public_ip  = try(var.sc_public_ips.dc2-fw, null)

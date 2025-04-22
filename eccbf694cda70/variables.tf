@@ -2,6 +2,10 @@ variable "name" {
   default = "eccbf"
 }
 
+variable "dns_zone" {
+  default = null
+}
+
 variable "gcp_project" {
   type = string
 }
