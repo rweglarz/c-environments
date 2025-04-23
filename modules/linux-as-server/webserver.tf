@@ -10,7 +10,7 @@ data "cloudinit_config" "webserver" {
     content = yamlencode({
       write_files = [
         {
-          path        = "/var/lib/cloud/scripts/per-once/setup.sh"
+          path        = "/var/lib/cloud/scripts/per-once/webserver-setup.sh"
           content     = templatefile("${path.module}/init/webserver-setup.sh", local.params)
           permissions = "0744"
         },

@@ -10,8 +10,13 @@ data "cloudinit_config" "cifs" {
     content = yamlencode({
       write_files = [
         {
-          path        = "/var/lib/cloud/scripts/per-once/setup.sh"
+          path        = "/var/lib/cloud/scripts/per-once/cifs-setup.sh"
           content     = templatefile("${path.module}/init/cifs-setup.sh", local.params)
+          permissions = "0744"
+        },
+        {
+          path        = "/var/lib/cloud/scripts/per-once/common-setup.sh"
+          content     = templatefile("${path.module}/init/common-setup.sh", local.params)
           permissions = "0744"
         },
         {
@@ -19,16 +24,23 @@ data "cloudinit_config" "cifs" {
           content     = templatefile("${path.module}/init/smb.conf", local.params)
           permissions = "0644"
         },
+        {
+          path        = "/etc/vsftpd.conf"
+          content     = file("${path.module}/init/vsftpd.conf")
+          permissions = "0644"
+        },
       ]
       users = [
         "default",
-        "smb",
+        local.smb_user,
+        local.common_user,
       ]
       packages = [
         "fping",
         "net-tools",
         "samba",
         "smbclient",
+        "vsftpd",
       ]
     })
   }
