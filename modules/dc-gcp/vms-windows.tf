@@ -19,9 +19,7 @@ resource "google_compute_instance" "vm_windows" {
       image = data.google_compute_image.windows_server.self_link
     }
   }
-  metadata = {
-    user-data = try(module.linux_bs[each.key].rendered, null)
-  }
+  deletion_protection = try(each.value.params.deletion_protection, false)
 
   network_interface {
     subnetwork = google_compute_subnetwork.this[each.value.subnet].id
