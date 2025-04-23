@@ -31,13 +31,17 @@ module "vnet_workloads_a" {
   location            = azurerm_resource_group.this.location
 
   name          = "${var.name}-workloads-a"
-  address_space = [local.cidrs.workloads-a]
+  address_space = [local.cidrs.vnet-a]
 
   subnets = {
     workloads-a = {
       address_prefixes = [local.cidrs.workloads-a]
       associate_nsg    = true
       network_security_group_id = module.basic.sg_id.mgmt
+    },
+    ztna-a = {
+      address_prefixes = [local.cidrs.ztna-a]
+      associate_nsg    = false
     },
   }
 }
@@ -49,13 +53,17 @@ module "vnet_workloads_b" {
   location            = azurerm_resource_group.this.location
 
   name          = "${var.name}-workloads-b"
-  address_space = [local.cidrs.workloads-b]
+  address_space = [local.cidrs.vnet-b]
 
   subnets = {
     workloads-b = {
       address_prefixes = [local.cidrs.workloads-b]
       associate_nsg    = true
       network_security_group_id = module.basic.sg_id.mgmt
+    },
+    ztna-b = {
+      address_prefixes = [local.cidrs.ztna-b]
+      associate_nsg    = false
     },
   }
 }

@@ -5,13 +5,19 @@ locals {
     public        = cidrsubnet(var.cidr, 3, 1)
     private       = cidrsubnet(var.cidr, 3, 2)
     GatewaySubnet = cidrsubnet(var.cidr, 3, 3)
+    vnet-a        = cidrsubnet(var.cidr, 2, 2)
     workloads-a   = cidrsubnet(var.cidr, 3, 4)
+    ztna-a        = cidrsubnet(var.cidr, 3, 5)
+    vnet-b        = cidrsubnet(var.cidr, 2, 3)
     workloads-b   = cidrsubnet(var.cidr, 3, 6)
+    ztna-b        = cidrsubnet(var.cidr, 3, 7)
   }
   subnets = {
     mgmt        = module.vnet_sec.subnets.mgmt
     workloads-a = module.vnet_workloads_a.subnets.workloads-a
     workloads-b = module.vnet_workloads_b.subnets.workloads-b
+    ztna-a      = module.vnet_workloads_a.subnets.ztna-a
+    ztna-b      = module.vnet_workloads_b.subnets.ztna-b
   }
 }
 output "subnets" {
@@ -31,4 +37,28 @@ module "basic" {
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
   mgmt_cidrs          = [for r in var.mgmt_ips : "${r.cidr}"]
+}
+
+
+resource "azurerm_route_table" "direct_internet" {
+  name                = "${var.name}-direct-internet"
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+}
+
+resource "azurerm_route" "direct_internet-dg" {
+  name                = "internet"
+  resource_group_name = azurerm_resource_group.this.name
+  route_table_name    = azurerm_route_table.direct_internet.name
+  address_prefix      = "0.0.0.0/0"
+  next_hop_type       = "Internet"
+}
+
+resource "azurerm_subnet_route_table_association" "ztna" {
+  for_each = {
+    ztna-a = module.vnet_workloads_a.subnets.ztna-a.id
+    ztna-b = module.vnet_workloads_b.subnets.ztna-b.id
+  }
+  subnet_id      = each.value
+  route_table_id = azurerm_route_table.direct_internet.id
 }
