@@ -6,3 +6,4 @@ Match User povuser
   KbdInteractiveAuthentication yes
 EOF
 
+/usr/bin/systemctl restart ssh
