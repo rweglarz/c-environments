@@ -30,7 +30,7 @@ resource "google_compute_instance" "vm_windows" {
   lifecycle {
     ignore_changes = [
       boot_disk[0].initialize_params[0].image,
-      metadata.windows-keys,
+      metadata["windows-keys"],
     ]
   }
 }
