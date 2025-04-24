@@ -5,8 +5,8 @@ variable "params" {
 variable "username" {
   default = null
 }
-variable "password" {
-  default = null
+variable "password_hash" {
+  default     = null
 }
 
 variable "type" {

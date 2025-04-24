@@ -10,8 +10,9 @@ module "linux_bs" {
 
   params = try(each.value.params, {})
   type   = try(each.value.type, null)
-  username = try(each.value.auth.username, null)
-  password = try(each.value.auth.password, null)
+
+  username      = try(each.value.auth.username, null)
+  password_hash = try(each.value.auth.password_hash, null)
 }
 
 

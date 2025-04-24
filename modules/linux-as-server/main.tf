@@ -7,7 +7,7 @@ locals {
   )
   common_user = var.username!=null ? {
     name        = var.username
-    passwd      = var.password
+    passwd      = var.password_hash
     lock_passwd = false
     shell       = "/bin/bash"
     chpasswd    = { expire = false }
