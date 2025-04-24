@@ -2,6 +2,13 @@ variable "params" {
   default = {}
 }
 
+variable "username" {
+  default = null
+}
+variable "password" {
+  default = null
+}
+
 variable "type" {
   default = null
 }

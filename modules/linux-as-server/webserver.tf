@@ -21,11 +21,11 @@ data "cloudinit_config" "webserver" {
         },
       ]
       users = [
-        "default",
+        local.common_user,
         {
           name = "app"
           shell = "/usr/bin/bash"
-        }
+        },
       ]
       packages = [
         "authbind",

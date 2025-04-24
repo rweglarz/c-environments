@@ -1,3 +1,15 @@
+locals {
+  smb_user = {
+    name        = "smb"
+    lock_passwd = false
+    passwd      = "$6$v2iEHve0$oFYQ5YaTRDd5D57kgp0EW3BIqpwXxRcdCXjU5Ktk7OrfDle7qS5yNDWS4rB/mpZhDLx7p27CSeVF0A3QT0gn51"  # smb
+    shell       = "/bin/bash"
+    homedir     = "/data/data"
+    chpasswd    = { expire = false }
+  }
+}
+
+
 data "cloudinit_config" "cifs" {
   count = try(var.type=="cifs") ? 1 : 0
 
@@ -31,7 +43,6 @@ data "cloudinit_config" "cifs" {
         },
       ]
       users = [
-        "default",
         local.smb_user,
         local.common_user,
       ]
