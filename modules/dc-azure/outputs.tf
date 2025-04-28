@@ -2,6 +2,10 @@ output "vms_linux" {
   value = { for k,v in module.vm_linux: k => { private_ip_address = v.private_ip_address, type = try(var.vms_linux[k].type, null) } }
 }
 
+output "vms_windows" {
+  value = { for k,v in module.vm_windows: k => { private_ip_address = v.private_ip_address, type = try(var.vms_windows[k].type, null) } }
+}
+
 output "vms_ztna" {
   value = { for k,v in module.vm_ztna: k => { private_ip_address = v.private_ip_address, type = "ztna" } }
 }
