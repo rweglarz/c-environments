@@ -35,7 +35,10 @@ variable "bgp_peer_enable" {
   ]
 }
 
-variable "deploy_sc" {
+variable "deploy_sc_vpn" {
+  default = false
+}
+variable "deploy_sc_fw" {
   default = false
 }
 variable "deploy_rn" {
@@ -84,6 +87,14 @@ variable "deploy_ngfw" {
   default = false
 }
 
+variable "scm_ngfw_folder" {
+ default = null 
+ validation {
+  condition = (var.scm_ngfw_folder!=null) || (var.deploy_ngfw==false)
+  error_message = "need folder"
+ }
+}
+
 variable "vms_linux" {
   default = {
     # jumphost = {
@@ -96,4 +107,16 @@ variable "vms_linux" {
 variable "vms_windows" {
   default = {
   }
+}
+
+variable "ngfw_image" {
+  default = "vmseries-flex-byol-1125"
+}
+
+variable "ngfw_machine_type" {
+  default = "n2-standard-4"
+}
+
+variable "ngfw_bootstrap" {
+  type = map(string)
 }

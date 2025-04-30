@@ -20,4 +20,15 @@ locals {
       nat  = true
     }
   }
+  private_ips = {
+    ngfw = {
+      mgmt    = cidrhost(local.subnets.mgmt.cidr, 4)
+      public  = cidrhost(local.subnets.public.cidr, 4)
+      private = cidrhost(local.subnets.private.cidr, 4)
+    }
+    gcp_cr = {
+      primary   = cidrhost(local.subnets.private.cidr, 5)
+      redundant = cidrhost(local.subnets.private.cidr, 6)
+    }
+  }
 }

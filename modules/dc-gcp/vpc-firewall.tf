@@ -23,3 +23,22 @@ resource "google_compute_firewall" "this-i" {
     protocol = "all"
   }
 }
+
+resource "google_compute_firewall" "public-i" {
+  name      = "${var.name}-public-i"
+  network   = google_compute_network.this["public"].id
+  direction = "INGRESS"
+  source_ranges = [
+      "0.0.0.0/0"
+  ]
+  allow {
+    protocol = "icmp"
+  }
+  allow {
+    protocol = "udp"
+    ports    = ["500", "4500"]
+  }
+  allow {
+    protocol = "esp"
+  }
+}
