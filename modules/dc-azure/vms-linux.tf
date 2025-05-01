@@ -23,7 +23,7 @@ module "vm_linux" {
   private_ip_address  = try(cidrhost(local.subnets[each.value.subnet].address_prefixes[0], each.value.hostnum), null)
   public_key          = var.ssh_public_key
   username            = each.value.auth.username
-  password            = each.value.auth.password
+  password            = try(each.value.auth.password, null)
   custom_data         = try(module.linux_bs[each.key].rendered, null)
   associate_public_ip = try(each.value.associate_public_ip, false)
 }
