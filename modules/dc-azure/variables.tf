@@ -52,7 +52,8 @@ variable "spn_name" {
 }
 
 variable "psk" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "pa_vpn_peering_cidr" {
@@ -68,5 +69,6 @@ variable "pa_vpn_public_ip" {
 variable "pa_region" {
   description = "service connection region"
   type        = string
+  default     = null
 }
 
