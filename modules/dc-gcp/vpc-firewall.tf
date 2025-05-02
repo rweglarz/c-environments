@@ -39,6 +39,10 @@ resource "google_compute_firewall" "public-i" {
     ports    = ["500", "4500"]
   }
   allow {
+    protocol = "tcp"
+    ports    = ["443"]
+  }
+  allow {
     protocol = "esp"
   }
 }
