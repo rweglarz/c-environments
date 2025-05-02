@@ -123,5 +123,5 @@ variable "ngfw_bootstrap" {
 
 variable "gp_ip_pool_subnet" {
   description = "if provided - make it /24"
-  default = null
+  default     = "10.254.254.0/24"
 }

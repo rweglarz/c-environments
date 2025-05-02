@@ -111,3 +111,11 @@ resource "google_compute_network_peering" "mgmt_from" {
     google_compute_network_peering.mgmt_to
   ]
 }
+
+resource "google_compute_route" "gp_ip_pool_subnet" {
+  name         = "${var.name}-gp-ip-pool"
+  dest_range   = var.gp_ip_pool_subnet
+  network      = google_compute_network.this["private"].name
+  next_hop_ip  = local.private_ips.ngfw.private
+  priority     = 100
+}
