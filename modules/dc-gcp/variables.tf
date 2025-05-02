@@ -120,3 +120,8 @@ variable "ngfw_machine_type" {
 variable "ngfw_bootstrap" {
   type = map(string)
 }
+
+variable "gp_ip_pool_subnet" {
+  description = "if provided - make it /24"
+  default = null
+}
