@@ -72,3 +72,7 @@ variable "pa_region" {
   default     = null
 }
 
+variable "vnet_peering_a_b" {
+  type    = bool
+  default = false
+}
