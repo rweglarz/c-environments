@@ -118,7 +118,8 @@ variable "ngfw_machine_type" {
 }
 
 variable "ngfw_bootstrap" {
-  type = map(string)
+  type    = map(string)
+  default = {}
 }
 
 variable "gp_ip_pool_subnet" {

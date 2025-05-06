@@ -18,7 +18,7 @@ locals {
     eth1-1-ipm               = { value = format("%s/27", local.private_ips.ngfw.public), type = "ip-netmask" }
     eth1-1-gw                = { value = cidrhost(local.subnets.public.cidr, 1), type = "ip-netmask" }
     eth1-2-gw                = { value = cidrhost(local.subnets.private.cidr, 1), type = "ip-netmask" }
-    fw-public-ip             = { value = google_compute_address.ngfw_public[0].address, type = "ip-netmask" }
+    fw-public-ip             = { value = try(google_compute_address.ngfw_public[0].address, null), type = "ip-netmask" }
     gcp-asn                  = { value = var.gcp_asn, type = "as-number" }
     gcp-ncc-peering-ip-1     = { value = local.private_ips.gcp_cr.primary, type = "ip-netmask" }
     gcp-ncc-peering-ip-2     = { value = local.private_ips.gcp_cr.redundant, type = "ip-netmask" }
