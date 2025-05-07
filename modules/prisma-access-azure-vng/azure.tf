@@ -1,7 +1,7 @@
 resource "azurerm_local_network_gateway" "this" {
   name                = var.name
-  resource_group_name = data.azurerm_resource_group.this.name
-  location            = data.azurerm_resource_group.this.location
+  resource_group_name = var.resource_group_name
+  location            = var.location
 
   gateway_address = var.pa_public_ip
   bgp_settings {
@@ -12,8 +12,8 @@ resource "azurerm_local_network_gateway" "this" {
 
 resource "azurerm_virtual_network_gateway_connection" "this" {
   name                = var.name
-  resource_group_name = data.azurerm_resource_group.this.name
-  location            = data.azurerm_resource_group.this.location
+  resource_group_name = var.resource_group_name
+  location            = var.location
 
   type                       = "IPsec"
   virtual_network_gateway_id = var.virtual_network_gateway.id

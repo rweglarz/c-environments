@@ -5,6 +5,7 @@ module "pa_connection" {
   name                = var.name
 
   resource_group_name     = azurerm_resource_group.this.name
+  location                = azurerm_resource_group.this.location
   virtual_network_gateway = azurerm_virtual_network_gateway.this[0]
 
   psk                 = var.psk
