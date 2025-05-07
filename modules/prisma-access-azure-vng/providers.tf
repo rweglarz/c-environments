@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~>5.38"
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~>4.26"
     }
     scm = {
       source  = "PaloAltoNetworks/scm"
